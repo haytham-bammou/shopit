@@ -4,6 +4,7 @@ import colors from 'colors'
 import { notFound, errorHandler } from './middelware/errorMiddelware.js'
 import productRoutes from './routes/productsRoute.js'
 import userRoutes from './routes/userRoutes.js'
+import orderRoutes from './routes/orderRoutes.js'
 import connectDB from './config/db.js'
 const app = express()
 
@@ -17,6 +18,7 @@ connectDB()
 
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
+app.use('/api/orders', orderRoutes)
 app.use(notFound)
 app.use(errorHandler)
 

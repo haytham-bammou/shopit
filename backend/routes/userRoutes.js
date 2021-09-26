@@ -1,12 +1,12 @@
 import { Router } from 'express'
+import { protect } from '../middelware/authMiddelware.js'
+const router = Router()
 import {
   authUser,
   getUserProfile,
   registerUser,
   updateUserProfile,
 } from '../controllers/userController.js'
-import { protect } from '../middelware/authMiddelware.js'
-const router = Router()
 
 // @desc    auth the user and get a token
 // @route   POST api/users/login
