@@ -1,11 +1,15 @@
 import { Router } from 'express'
-import { protect } from '../middelware/authMiddelware.js'
+import { protect, admin } from '../middelware/authMiddelware.js'
 const router = Router()
 import {
   authUser,
+  deleteUser,
   getUserProfile,
+  getUsers,
   registerUser,
   updateUserProfile,
+  getUserById,
+  updateUser,
 } from '../controllers/userController.js'
 
 // @desc    auth the user and get a token
@@ -28,6 +32,11 @@ router
 // @desc    register a user
 // @route   POST api/users
 // @access  public
-router.route('/').post(registerUser)
+router.route('/').post(registerUser).get(protect, admin, getUsers)
 
+router
+  .route('/:id')
+  .delete(protect, admin, deleteUser)
+  .get(protect, admin, getUserById)
+  .put(protect, admin, updateUser)
 export default router
